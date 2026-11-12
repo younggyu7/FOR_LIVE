@@ -1,0 +1,78 @@
+/* 화면 스타일: 화이트 미니멀 · 에디토리얼 — 최종 개발하기에서 고름 (코드가 만든 파일). styles.css의 토큰을 바꾼다. */
+:root {
+  --bg: #fafbfc;
+  --panel-2: #f1f3f6;
+  --line: #e1e5eb;
+  --accent: #2b59c3;
+  --accent-ink: #ffffff;
+  --accent-soft: #e6edfb;
+  --accent-line: #93acea;
+  --side: var(--panel);
+  --side-ink: var(--ink);
+  --side-cap: var(--muted);
+  --side-on: var(--accent-soft);
+  --side-hover: var(--panel-2);
+  --side-line: var(--line);
+  --mark: var(--accent);
+  --mark-ink: var(--accent-ink);
+  --cover: #f1f4fb;
+  --cover-ink: #273142;
+  --cover-hi: #2b59c3;
+  --cover-line: #93acea;
+  --side-strong: var(--accent);
+  --cover-title: #1f2a3a;
+  --th-bg: transparent;
+  --th-ink: var(--ink);
+  --title: clamp(38px, 5vw, 64px);
+  --cell-y: 15px;
+  --cell-x: 8px;
+  --gap: 28px;
+  --side-w: 232px;
+  --radius: 2px;
+  --radius-box: 0px;
+  --radius-card: 0px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --accent: #8fb0f5;
+    --accent-ink: #0d1a24;
+    --accent-line: #8fb0f5;
+    --side: var(--panel);
+    --cover: #11151c;
+    --side-strong: var(--accent);
+    --cover-title: #ffffff;
+    --side-ink: var(--ink);
+    --side-cap: var(--muted);
+    --side-on: var(--accent-soft);
+    --side-hover: var(--panel-2);
+    --side-line: var(--line);
+    --mark: var(--accent);
+    --mark-ink: var(--accent-ink);
+  }
+}
+:root[data-theme="dark"] {
+  --accent: #8fb0f5;
+  --accent-ink: #0d1a24;
+  --accent-line: #8fb0f5;
+  --side: var(--panel);
+  --cover: #11151c;
+  --side-strong: var(--accent);
+  --cover-title: #ffffff;
+  --side-ink: var(--ink);
+  --side-cap: var(--muted);
+  --side-on: var(--accent-soft);
+  --side-hover: var(--panel-2);
+  --side-line: var(--line);
+  --mark: var(--accent);
+  --mark-ink: var(--accent-ink);
+}
+body { background: var(--panel); }
+.side { border-right: 1px solid var(--line); }
+.table-wrap, .filters, .split-pane, .box, .card, .panel, .tiles > div { background: transparent; border: 0; }
+.filters, .box { padding: 0; }
+.box { border-top: 1px solid var(--line); padding-top: 18px; }
+.box > h2 { font-size: 18px; letter-spacing: -.03em; }
+th { border-bottom: 2px solid var(--ink); }
+tbody tr:hover { background: transparent; }
+tbody tr:hover td { color: var(--accent); }
+.hero { margin: 56px 0 34px; }

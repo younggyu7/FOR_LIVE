@@ -1,0 +1,38 @@
+# 시연용 서비스: PostgreSQL(schema.sql + seed.sql) + 서버(화면 포함). 운영 설정이 아니다.
+# docker compose up --build → http://localhost:8080 (계정: local/accounts.txt). 포트가 겹치면 APP_PORT·DB_PORT로 바꾼다.
+# 다른 PC에서 열려면 APP_HOST=0.0.0.0 (이 PC의 모든 네트워크에 연다).
+services:
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: app
+      POSTGRES_PASSWORD: app
+      POSTGRES_DB: app
+    ports:
+      - "127.0.0.1:${DB_PORT:-5433}:5432"
+    volumes:
+      - ./db/schema.sql:/docker-entrypoint-initdb.d/01_schema.sql:ro
+      - ./db/seed.sql:/docker-entrypoint-initdb.d/02_seed.sql:ro
+      - db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -h 127.0.0.1 -U app -d app"]
+      interval: 3s
+      timeout: 3s
+      retries: 40
+  app:
+    build: .
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DB_URL: postgresql://app:app@db:5432/app
+      LOCAL_DIR: /app/local
+      DEMO_PASSWORD: ${DEMO_PASSWORD:-}
+      RESET_PASSWORDS: ${RESET_PASSWORDS:-false}
+      SYSTEM_API_KEY: ${SYSTEM_API_KEY:-}
+    ports:
+      - "${APP_HOST:-127.0.0.1}:${APP_PORT:-8080}:8080"
+    volumes:
+      - ./local:/app/local
+volumes:
+  db-data:

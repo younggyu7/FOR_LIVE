@@ -1,0 +1,9 @@
+node_modules/
+dist/
+target/
+.env
+local/
+.preview/
+.req-agent/
+.next/
+out/

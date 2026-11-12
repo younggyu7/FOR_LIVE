@@ -1,0 +1,14 @@
+[
+ {
+  "loginId": "admin",
+  "role": "전체 보기",
+  "userId": "1",
+  "name": "관리자 (전체 권한)"
+ },
+ {
+  "loginId": "user",
+  "role": "임직원",
+  "userId": "2",
+  "name": "임직원"
+ }
+]
